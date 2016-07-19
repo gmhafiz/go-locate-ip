@@ -3,9 +3,10 @@ package main
 import (
 	"log"
 	"net"
+	"time"
 )
 
-func echoServer(c net.Conn) {
+func what_is_the_ip(c net.Conn) {
 	for {
 		buf := make([]byte, 512)
 		nr, err := c.Read(buf)
@@ -13,7 +14,9 @@ func echoServer(c net.Conn) {
 			return
 		}
 
-		data := buf[0:nr]
+		ip := buf[0:nr]
+		time := time.Now().Format(time.RFC850)
+		data := time + " " + string(ip)
 		println("Server got:", string(data))
 		//_, err = c.Write(data)
 		//if err != nil {
@@ -29,11 +32,11 @@ func main() {
 	}
 
 	for {
-		fd, err := l.Accept()
+		incoming, err := l.Accept()
 		if err != nil {
 			log.Fatal("accept error:", err)
 		}
 
-		go echoServer(fd)
+		go what_is_the_ip(incoming)
 	}
 }
