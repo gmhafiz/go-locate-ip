@@ -23,12 +23,12 @@ The line `CONN_ADDR = "127.0.0.1:8088"` has to be changed to whatever your serve
 
 ## Autostart
 
-It is better to compile it though. `go install lml_[server|client].go`
+It is better to compile it though. `go install lml_[server|client].go` Since there are two mains in both .go files.
 
 Using systemd:
 
 ```
-[Unit]
+[Unit]g
 Description=Send both local and public IP address to an external server
 
 [Service]
