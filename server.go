@@ -20,8 +20,8 @@ import (
 )
 
 const (
-	CONN_TYPE = "unix"		// or tcp
-	CONN_PORT = "/tmp/echo.sock"	// any port >= 1024
+	CONN_TYPE = "tcp"	// unix or tcp
+	CONN_PORT = ":8088"	// any port >= 1024
 )
 
 func what_is_the_ip(conn net.Conn) {

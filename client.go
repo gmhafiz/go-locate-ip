@@ -24,6 +24,11 @@ import (
 	"regexp"
 )
 
+const (
+	CONN_TYPE = "tcp"		// unix or tcp
+	CONN_ADDR = "127.0.0.1:8088"	// /tmp/echo.sock or addr:port
+)
+
 // Get preferred outbound ip of this machine
 func GetOutboundIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
@@ -137,7 +142,7 @@ func findIP(input string) string {
 
 func main() {
 	var debug bool = true
-	c, err := net.Dial("unix", "/tmp/echo.sock")
+	c, err := net.Dial(CONN_TYPE, CONN_ADDR)
 	if err != nil {
 		panic(err)
 	}
