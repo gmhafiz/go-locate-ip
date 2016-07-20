@@ -8,6 +8,10 @@ https://www.socketloop.com/tutorials/golang-convert-http-response-body-to-string
 http://stackoverflow.com/questions/106179/regular-expression-to-match-dns-hostname-or-ip-address
 */
 
+/*
+TODO: include GPS or any rough location
+*/
+
 import (
 	"log"
 	"net"
@@ -37,14 +41,14 @@ func GetOutboundIP() string {
 func get_ip_wimia() string {
 	response, err := http.Get("http://ipv4bot.whatismyipaddress.com")
 	if err != nil {
-		fmt.Println("404 not found")
+		log.Fatal("404 not found", err.Error())
 		os.Exit(1)
 	}
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Println("http read error")
+		log.Fatal("http read error", err.Error())
 		os.Exit(1)
 	}
 	src := string(body)
@@ -57,14 +61,14 @@ func get_source() string {
 	//response, err := http.Get("https://www.google.com.au/search?q=whattismyipaddress&oq=whattismyipaddress&aqs=chrome..69i57j0l5.7070j0j7&sourceid=chrome&ie=UTF-8")
 	response, err := http.Get("http://ipv4bot.whatismyipaddress.com")
 	if err != nil {
-		fmt.Println("404 not found")
+		log.Fatal("404 not found", err.Error())
 		os.Exit(1)
 	}
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Println("http read error")
+		log.Fatal("http read error", err.Error())
 		os.Exit(1)
 	}
 	src := string(body)
@@ -149,8 +153,8 @@ func main() {
 			print(GetOutboundIP() + "\n")
 		}
 		if err != nil {
-			log.Fatal("write error:", err)
-			break
+			log.Fatal("write error:", err.Error())
+			os.Exit(1)
 		}
 		time.Sleep(1800e9)  // 1800 seconds
 	}

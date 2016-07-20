@@ -15,38 +15,46 @@ import (
 	"net"
 	"time"
 	"log"
+	"os"
+	"fmt"
 )
 
 const (
-	CONN_TYPE = "unix"
-	CONN_PORT = "/tmp/echo.sock"
+	CONN_TYPE = "unix"		// or tcp
+	CONN_PORT = "/tmp/echo.sock"	// any port >= 1024
 )
 
-func what_is_the_ip(c net.Conn) {
+func what_is_the_ip(conn net.Conn) {
 	for {
 		buf := make([]byte, 512)
-		nr, err := c.Read(buf)
+		len, err := conn.Read(buf)
 		if err != nil {
-			return
+			log.Fatal("Error connecting: " + err.Error())
+			os.Exit(1)
 		}
 
-		ip := buf[0:nr]
+		ip := buf[0:len]
 		time := time.Now().Format(time.RFC850)
 		data := time + " " + string(ip)
 		println("Server got:", string(data))
 	}
+	conn.Close()
 }
 
 func main() {
-	l, err := net.Listen(CONN_TYPE, CONN_PORT)
+	listen, err := net.Listen(CONN_TYPE, CONN_PORT)
 	if err != nil {
-		log.Fatal("listen error:", err)
+		log.Fatal("listen error:", err.Error())
 	}
+	defer listen.Close()
+
+	time := time.Now().Format(time.RFC850)
+	fmt.Println(time + ": Listening to incoming connections...")
 
 	for {
-		incoming, err := l.Accept()
+		incoming, err := listen.Accept()
 		if err != nil {
-			log.Fatal("accept error:", err)
+			log.Fatal("accept error:", err.Error())
 		}
 
 		go what_is_the_ip(incoming)
