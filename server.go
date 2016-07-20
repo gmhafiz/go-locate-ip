@@ -1,9 +1,20 @@
 package main
 
+/*
+Credits:
+https://gist.github.com/jniltinho/9788121
+https://stackoverflow.com/questions/5885486/how-do-i-get-the-current-timestamp-in-go
+https://systembash.com/a-simple-go-tcp-server-and-tcp-client/
+https://www.socketloop.com/tutorials/golang-convert-http-response-body-to-string
+https://www.socketloop.com/tutorials/golang-find-ip-address-from-string
+https://www.socketloop.com/tutorials/golang-convert-http-response-body-to-string
+http://stackoverflow.com/questions/106179/regular-expression-to-match-dns-hostname-or-ip-address
+*/
+
 import (
-	"log"
 	"net"
 	"time"
+	"log"
 )
 
 func what_is_the_ip(c net.Conn) {
@@ -18,10 +29,6 @@ func what_is_the_ip(c net.Conn) {
 		time := time.Now().Format(time.RFC850)
 		data := time + " " + string(ip)
 		println("Server got:", string(data))
-		//_, err = c.Write(data)
-		//if err != nil {
-		//	log.Fatal("Write: ", err)
-		//}
 	}
 }
 
