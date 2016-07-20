@@ -17,6 +17,11 @@ import (
 	"log"
 )
 
+const (
+	CONN_TYPE = "unix"
+	CONN_PORT = "/tmp/echo.sock"
+)
+
 func what_is_the_ip(c net.Conn) {
 	for {
 		buf := make([]byte, 512)
@@ -33,7 +38,7 @@ func what_is_the_ip(c net.Conn) {
 }
 
 func main() {
-	l, err := net.Listen("unix", "/tmp/echo.sock")
+	l, err := net.Listen(CONN_TYPE, CONN_PORT)
 	if err != nil {
 		log.Fatal("listen error:", err)
 	}
