@@ -24,6 +24,17 @@ const (
 	CONN_PORT = ":8088"	// any port >= 1024
 )
 
+func appendToLog(src string) {
+	file, err := os.OpenFile("log.txt", os.O_APPEND | os.O_WRONLY, 0600)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer file.Close()
+	if _, err = file.WriteString(src + "\n"); err != nil {
+		panic(err.Error())
+	}
+}
+
 func what_is_the_ip(conn net.Conn) {
 	for {
 		buf := make([]byte, 512)
@@ -37,6 +48,8 @@ func what_is_the_ip(conn net.Conn) {
 		time := time.Now().Format(time.RFC850)
 		data := time + " " + string(ip)
 		println("Server got:", string(data))
+		// Write incoming message into a log file.
+		appendToLog(data)
 	}
 	conn.Close()
 }

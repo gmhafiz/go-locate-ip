@@ -40,7 +40,7 @@ func GetOutboundIP() string {
 	localAddr := conn.LocalAddr().String()
 	idx := strings.LastIndex(localAddr, ":")
 
-	return localAddr[0:idx]
+	return "Local: " + localAddr[0:idx]
 }
 
 func get_ip_wimia() string {
@@ -151,16 +151,18 @@ func main() {
 	for {
 		source := get_source()
 
-		_, err := c.Write([]byte(GetOutboundIP() + " " + get_ip_wimia()))
+		_, err := c.Write([]byte(GetOutboundIP() + " Public: " + get_ip_wimia()))
 
 		if debug == true {
-			fmt.Println("Public IP: " + source)
+			fmt.Println("Public: " + source)
 			print(GetOutboundIP() + "\n")
 		}
 		if err != nil {
 			log.Fatal("write error:", err.Error())
 			os.Exit(1)
 		}
+
 		time.Sleep(1800e9)  // 1800 seconds
 	}
 }
+
