@@ -43,4 +43,9 @@ WantedBy=multi-user.target
 ## TODO
 
 - Send rough GPS location
+- Send localhost name of device to server
 - systemd service that starts upon network connection
+
+## Bug
+
+- Closing (Ctrl + C) client will close server as well
