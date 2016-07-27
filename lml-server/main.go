@@ -9,6 +9,7 @@ https://www.socketloop.com/tutorials/golang-convert-http-response-body-to-string
 https://www.socketloop.com/tutorials/golang-find-ip-address-from-string
 https://www.socketloop.com/tutorials/golang-convert-http-response-body-to-string
 http://stackoverflow.com/questions/106179/regular-expression-to-match-dns-hostname-or-ip-address
+http://www.devdungeon.com/content/working-files-go#create_empty_file
 */
 
 import (
@@ -24,15 +25,33 @@ const (
 	CONN_PORT = ":8088"	// any port >= 1024
 )
 
+var (
+	newFile *os.File
+	err     error
+	filename string = "log.txt"
+)
+
 func appendToLog(src string) {
-	file, err := os.OpenFile("log.txt", os.O_APPEND | os.O_WRONLY, 0600)
+	createFile(filename)
+	file, err := os.OpenFile(filename, os.O_APPEND | os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer file.Close()
+
 	if _, err = file.WriteString(src + "\n"); err != nil {
 		panic(err.Error())
 	}
+}
+
+func createFile(filename string) {
+
+	newFile, err = os.Create(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	newFile.Close()
 }
 
 func what_is_the_ip(conn net.Conn) {
