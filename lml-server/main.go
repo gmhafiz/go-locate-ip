@@ -13,27 +13,27 @@ http://www.devdungeon.com/content/working-files-go#create_empty_file
 */
 
 import (
-	"net"
-	"time"
-	"log"
-	"os"
 	"fmt"
+	"log"
+	"net"
+	"os"
+	"time"
 )
 
 const (
-	CONN_TYPE = "tcp"	// unix or tcp
-	CONN_PORT = ":8088"	// any port >= 1024
+	CONN_TYPE = "tcp"   // unix or tcp
+	CONN_PORT = ":8088" // any port >= 1024
 )
 
 var (
-	newFile *os.File
-	err     error
+	newFile  *os.File
+	err      error
 	filename string = "log.txt"
 )
 
 func appendToLog(src string) {
 	createFile(filename)
-	file, err := os.OpenFile(filename, os.O_APPEND | os.O_WRONLY, 0600)
+	file, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -54,7 +54,7 @@ func createFile(filename string) {
 	newFile.Close()
 }
 
-func what_is_the_ip(conn net.Conn) {
+func getIPFromClient(conn net.Conn) {
 	for {
 		buf := make([]byte, 512)
 		len, err := conn.Read(buf)
@@ -89,6 +89,6 @@ func main() {
 			log.Fatal("accept error:", err.Error())
 		}
 
-		go what_is_the_ip(incoming)
+		go getIPFromClient(incoming)
 	}
 }
