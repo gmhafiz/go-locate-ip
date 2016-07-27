@@ -5,9 +5,15 @@
 Find the IP address of your (lost) devices by making it send both public and local IP address.
 Motivation
 
+## Installation
+
+```shell
+go get github.com/gmhafiz/locateMyLaptop
+```
+
 ## Usage
 
-Run the server first before running the client
+Run the server first before running the client. 
 
 ```go
 go run lml_server.go
@@ -19,7 +25,14 @@ go run lml_client.go
 
 ## Configuration
 
-The line `CONN_ADDR = "127.0.0.1:8088"` has to be changed to whatever your server IP address is.
+Flags are available for `lml-client.go`. 
+
+If you are running the server on the internet, please check if the port `8088` is not firewalled and yu have he correct IP address.
+
+```
+-t <type of connection> // defaults to tcp
+-a <address:port>       // defaults to 127.0.0.1:8808
+```
 
 ## Autostart
 
@@ -49,3 +62,4 @@ WantedBy=multi-user.target
 ## Bug
 
 - Closing (Ctrl + C) client will close server as well
+- Check if log file exists or not
