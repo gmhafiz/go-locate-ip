@@ -3,7 +3,9 @@
 ## Introduction
 
 Find the IP address of your (lost) devices by making it send both public and local IP address.
-Motivation
+
+#### Motivation
+[![ DEF CON 18 - Zoz - Pwned By The Owner: What Happens When You Steal A Hacker's Computer ](http://img.youtube.com/vi/Jwpg-AwJ0Jc/0.jpg)](https://www.youtube.com/watch?v=Jwpg-AwJ0Jc)
 
 ## Installation
 
@@ -27,7 +29,7 @@ go run lml_client.go
 
 Flags are available for `lml-client.go`. 
 
-If you are running the server on the internet, please check if the port `8088` is not firewalled and yu have he correct IP address.
+If you are running the server on the internet, please check if the port `8088` is not firewalled and you have the correct IP address.
 
 ```
 -t <type of connection> // defaults to tcp
