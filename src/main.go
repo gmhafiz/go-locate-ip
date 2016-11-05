@@ -120,8 +120,8 @@ func getIPFromClient(conn net.Conn) {
 		buf := make([]byte, 512)
 		length, err := conn.Read(buf)
 		if err != nil {
-			log.Fatal("Error connecting: " + err.Error())
-			os.Exit(1)
+			log.Fatal("Error connecting or client has gone away: " + err.Error())
+			//os.Exit(1)
 		}
 
 		ip := buf[0:length]
