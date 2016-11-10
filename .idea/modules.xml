@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/locateMyLaptop.iml" filepath="$PROJECT_DIR$/locateMyLaptop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/go-locate-ip.iml" filepath="$PROJECT_DIR$/go-locate-ip.iml" />
     </modules>
   </component>
 </project>
