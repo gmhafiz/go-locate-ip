@@ -1,5 +1,3 @@
-log.txt
-
 # Created by .ignore support plugin (hsz.mobi)
 ### Go template
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
@@ -32,8 +30,10 @@ _testmain.go
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea
+.idea/
 *.iml
+log.txt
+.directory
 
 ## File-based project format:
 *.iws
