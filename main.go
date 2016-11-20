@@ -128,7 +128,7 @@ func runClient() {
 			break
 		}
 		//time.Sleep(pollMinutes * time.Minute)
-		time.Sleep(time.Duration(pollMinutes) * time.Second)
+		time.Sleep(time.Duration(pollMinutes) * time.Minute)
 	}
 }
 
