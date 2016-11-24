@@ -132,7 +132,6 @@ func runClient() {
 	}
 }
 
-// Get preferred outbound ip of this machine
 func GetInternalIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
@@ -146,7 +145,6 @@ func GetInternalIP() string {
 	return localAddr[0:idx]
 }
 
-// Internal IP
 func GetExternalIP() string {
 	response, err := http.Get("http://ipv4bot.whatismyipaddress.com")
 	if err != nil {
@@ -162,7 +160,7 @@ func GetExternalIP() string {
 	}
 	src := string(body)
 
-	return string(src)
+	return src
 }
 
 /*
@@ -229,9 +227,9 @@ func appendToLog(src string) {
 	}
 }
 
-func createFile(filename string) {
-	if _, err := os.Stat(filename); os.IsNotExist(err) {
-		newFile, err = os.Create(filename)
+func createFile(fileName string) {
+	if _, err := os.Stat(fileName); os.IsNotExist(err) {
+		newFile, err = os.Create(fileName)
 		if err != nil {
 			log.Fatal(err)
 		}
