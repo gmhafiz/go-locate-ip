@@ -47,13 +47,19 @@ If you are running the server on the internet, please check if the port `8088` i
 
 Example:
 Connect laptop to a server at 216.58.199.78 port 8000 and updates every 30 minutes
+
 ```bash
 ./main -m client -a 216.58.199.78 -p 8000 -t 30
 ```
 
+Example:
+Connect laptop to a server at 216.58.199.78 port 8000 and updates every 30 minutes
+`./main -m client -a 216.58.199.78 -p 8000 -t 30`
+
 ## Autostart
 
 It is better to compile it though. `go install main.go`. Make sure you have `$GOBIN` set up and is included in your `$PATH`
+
 
 Using systemd:
 
@@ -67,7 +73,6 @@ Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
-
 ```
 
 ## TODO
@@ -80,3 +85,4 @@ WantedBy=multi-user.target
 
 - Closing (Ctrl + C) client will close server as well
 - ~~Check if log file exists or not~~
+
